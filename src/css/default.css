@@ -14,3 +14,7 @@
     background: url(../img/ajax-loader.gif) no-repeat center center;
     margin: 0 auto;
 }
+
+.ident-table{
+    width: 20px;
+}
