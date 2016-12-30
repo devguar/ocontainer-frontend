@@ -102,7 +102,7 @@ function defineMasks() {
         minimumResultsForSearch: 10,
         ajax: {
             url: function(){
-                var estadoid = $("#estadoid").val();
+                var estadoid = $("#estado_id").val();
 
                 var urlcontroller = urlcidades;
                 urlcidades = urlcidades.replace(/999999/g, estadoid);
