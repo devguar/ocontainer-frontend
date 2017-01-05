@@ -14,7 +14,7 @@ function defineMasksAutocomplete() {
         placeholder: "Selecione uma opção",
         language: 'pt-BR',
         minimumInputLength: 1,
-        minimumResultsForSearch: 10,
+        minimumResultsForSearch: 1,
         ajax: {
             dataType: "json",
             type: "GET",
