@@ -45,6 +45,7 @@ function defineMasksAutocomplete() {
 
     var options_ac_allowinsert = Object.create(options_ac);
     options_ac_allowinsert.tags = true;
+    options_ac_allowinsert.placeholder = "Selecione uma opção ou digite";
     options_ac_allowinsert.createTag = function (params) {
         return {
             id: "new:" + params.term,
