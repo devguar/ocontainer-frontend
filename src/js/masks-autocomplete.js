@@ -6,7 +6,7 @@ function defineMasksAutocomplete() {
     $('.mask-chosen').select2({
         theme: "bootstrap",
         placeholder: "Selecione uma opção",
-        language: 'pt-BR',
+        language: 'pt-BR'
     });
 
     var options_ac = {
@@ -14,7 +14,7 @@ function defineMasksAutocomplete() {
         placeholder: "Selecione uma opção",
         language: 'pt-BR',
         minimumInputLength: 1,
-        minimumResultsForSearch: 1,
+        minimumResultsForSearch: 0,
         ajax: {
             dataType: "json",
             type: "GET",
