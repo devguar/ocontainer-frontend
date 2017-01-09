@@ -18,3 +18,15 @@
 .ident-table{
     width: 20px;
 }
+
+.radio label{
+    border: 1px solid #ddd;
+    background-color: #eee;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 8px;
+    padding-left: 28px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
