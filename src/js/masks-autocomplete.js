@@ -2,6 +2,10 @@
  * Created by lucas.guarnieri on 03/11/2016.
  */
 
+$(document).ready(function(){
+    defineMasksAutocomplete();
+});
+
 function defineMasksAutocomplete() {
     $('.mask-chosen').select2({
         theme: "bootstrap",

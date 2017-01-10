@@ -37,49 +37,8 @@ function defineMasks() {
         }
     });
 
-    $(".mask-decimal_old").keypress(function (evt) {
-        var theEvent = evt || window.event;
-        var key = theEvent.keyCode || theEvent.which;
-        key = String.fromCharCode(key);
-        var regex = /[0-9]|\./;
-        if (!regex.test(key)) {
-            theEvent.returnValue = false;
-            if (theEvent.preventDefault) theEvent.preventDefault();
-        }
-    });
 
-    $('.mask-decimal').maskMoney({
-        prefix: '',
-        allowNegative: false,
-        thousands: '',
-        decimal: ',',
-        affixesStay: false
-    });
-
-    $('.mask-money').maskMoney({
-        prefix: 'R$ ',
-        allowNegative: false,
-        thousands: '',
-        decimal: ',',
-        affixesStay: false
-    });
-
-    $('.mask-integer').maskMoney({
-        prefix: '',
-        precision: 0,
-        allowNegative: false,
-        thousands: '',
-        decimal: ',',
-        affixesStay: false
-    });
-
-    $('.mask-tooltip').tooltip();
-
-    $(".mask-cor").colorpicker({
-        format: 'hex'
-    });
-
-    $(".mask-multiselect").multiSelect();
 
     defineMasksAutocomplete();
+    defineMasksNumbers();
 };
