@@ -10,7 +10,8 @@
     "gulp-jshint": "^2.0.0",
     "gulp-uglify": "^2.0.0",
     "gulp-uglifycss": "^1.0.6",
-    "jshint": "^2.9.1"
+    "jshint": "^2.9.1",
+    "pump": "^1.0.2"
   },
   "dependencies": {
     "bootstrap": "^3.3.7",
@@ -22,7 +23,6 @@
     "jquery-ui": "^1.10.5",
     "jquery.maskedinput": "^1.4.1",
     "multiselect": "github:lou/multi-select",
-    "pump": "^1.0.2",
     "select2": "^4.0.2",
     "select2-bootstrap-theme": "0.1.0-beta.9"
   }
