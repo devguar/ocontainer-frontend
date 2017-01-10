@@ -6,7 +6,8 @@ var uglifycss = require('gulp-uglifycss');
 
 var basejs = [
 	'node_modules/jquery/dist/jquery.js',
-    'node_modules/bootstrap/dist/js/bootstrap.js'
+    'node_modules/bootstrap/dist/js/bootstrap.js',
+	'src/js/default.js',
 ];
 
 var masksjs = [
@@ -34,6 +35,7 @@ var bootstraptablejs = [
 
 var basecss = [
 	'node_modules/bootstrap/dist/css/bootstrap.css',
+	'src/css/default.css'
 ]
 
 var maskscss = [
