@@ -3,6 +3,7 @@ var gulp = require('gulp');
 var uglify = require('gulp-uglify');
 var concat = require('gulp-concat');
 var uglifycss = require('gulp-uglifycss');
+var pump = require('pump');
 
 var basejs = [
 	'node_modules/jquery/dist/jquery.js',
@@ -55,40 +56,70 @@ var fonts = [
     'node_modules/sb-admin-2/vendor/font-awesome/fonts/*'
 ];
 
-gulp.task('uglifybasejs', function () {
-    gulp.src(basejs)
-        .pipe(concat('ocontainer-base.js'))
-        .pipe(gulp.dest('dist/js'))
+gulp.task('uglifybasejs',  function (cb) {
+    pump([
+            gulp.src(basejs),
+            uglify(),
+            concat('ocontainer-base.js'),
+            gulp.dest('dist/js')
+        ],
+        cb
+    );
 });
 
-gulp.task('uglifymasksjs', function () {
-    gulp.src(masksjs)
-        .pipe(concat('ocontainer-masks.js'))
-        .pipe(gulp.dest('dist/js'))
+gulp.task('uglifymasksjs', function (cb) {
+    pump([
+            gulp.src(masksjs),
+            uglify(),
+            concat('ocontainer-masks.js'),
+            gulp.dest('dist/js')
+        ],
+        cb
+    );
 });
 
-gulp.task('uglifybootstraptablejs', function () {
-    gulp.src(bootstraptablejs)
-        .pipe(concat('ocontainer-table.js'))
-        .pipe(gulp.dest('dist/js'))
+gulp.task('uglifybootstraptablejs', function (cb) {
+    pump([
+            gulp.src(bootstraptablejs),
+            uglify(),
+            concat('ocontainer-table.js'),
+            gulp.dest('dist/js')
+        ],
+        cb
+    );
 });
 
-gulp.task('uglifybasecss', function () {
-    gulp.src(basecss)
-        .pipe(concat('ocontainer-base.css'))
-        .pipe(gulp.dest('dist/css'))
+gulp.task('uglifybasecss', function (cb) {
+    pump([
+            gulp.src(basecss),
+            uglifycss(),
+            concat('ocontainer-base.css'),
+            gulp.dest('dist/css')
+        ],
+        cb
+    );
 });
 
-gulp.task('uglifymaskscss', function () {
-    gulp.src(maskscss)
-        .pipe(concat('ocontainer-masks.css'))
-        .pipe(gulp.dest('dist/css'))
+gulp.task('uglifymaskscss', function (cb) {
+    pump([
+            gulp.src(maskscss),
+            uglifycss(),
+            concat('ocontainer-masks.css'),
+            gulp.dest('dist/css')
+        ],
+        cb
+    );
 });
 
-gulp.task('uglifybootstraptablecss', function () {
-    gulp.src(bootstraptablecss)
-        .pipe(concat('ocontainer-table.css'))
-        .pipe(gulp.dest('dist/css'))
+gulp.task('uglifybootstraptablecss', function (cb) {
+    pump([
+            gulp.src(bootstraptablecss),
+            uglifycss(),
+            concat('ocontainer-table.css'),
+            gulp.dest('dist/css')
+        ],
+        cb
+    );
 });
 
 gulp.task('copyfonts', function() {

@@ -22,6 +22,7 @@
     "jquery-ui": "^1.10.5",
     "jquery.maskedinput": "^1.4.1",
     "multiselect": "github:lou/multi-select",
+    "pump": "^1.0.2",
     "select2": "^4.0.2",
     "select2-bootstrap-theme": "0.1.0-beta.9"
   }
