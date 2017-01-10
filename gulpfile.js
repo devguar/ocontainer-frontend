@@ -7,7 +7,7 @@ var uglifycss = require('gulp-uglifycss');
 var basejs = [
 	'node_modules/jquery/dist/jquery.js',
     'node_modules/bootstrap/dist/js/bootstrap.js',
-	'src/js/default.js',
+	'src/js/default.js'
 ];
 
 var masksjs = [
@@ -19,9 +19,9 @@ var masksjs = [
     'node_modules/select2/dist/js/select2.js',
     'node_modules/select2/dist/js/i18n/pt-BR.js',
     'node_modules/multiselect/js/jquery.multi-select.js',
+    'src/js/masks-default.js',
     'src/js/masks-autocomplete.js',
     'src/js/masks-color.js',
-    'src/js/masks-default.js',
     'src/js/masks-multiselect.js',
     'src/js/masks-numbers.js',
     'src/js/masks-tooltip.js'
@@ -30,13 +30,13 @@ var masksjs = [
 var bootstraptablejs = [
     'node_modules/bootstrap-table/dist/bootstrap-table.js',
     'node_modules/bootstrap-table/src/locale/bootstrap-table-pt-BR.js',
-    'src/js/bootstrap.table.formatters.js',
+    'src/js/bootstrap.table.formatters.js'
 ];
 
 var basecss = [
 	'node_modules/bootstrap/dist/css/bootstrap.css',
 	'src/css/default.css'
-]
+];
 
 var maskscss = [
     'node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker.css',
@@ -44,7 +44,7 @@ var maskscss = [
     'node_modules/select2/dist/css/select2.css',
     'node_modules/select2-bootstrap-theme/dist/select2-bootstrap.css',
     'node_modules/multiselect/css/multi-select.css'
-]
+];
 
 var bootstraptablecss = [    
     'node_modules/bootstrap-table/dist/bootstrap-table.css'
@@ -58,42 +58,36 @@ var fonts = [
 gulp.task('uglifybasejs', function () {
     gulp.src(basejs)
         .pipe(concat('ocontainer-base.js'))
-        .pipe(uglify())
         .pipe(gulp.dest('dist/js'))
 });
 
 gulp.task('uglifymasksjs', function () {
     gulp.src(masksjs)
         .pipe(concat('ocontainer-masks.js'))
-        .pipe(uglify())
         .pipe(gulp.dest('dist/js'))
 });
 
 gulp.task('uglifybootstraptablejs', function () {
-    gulp.src(basejs)
+    gulp.src(bootstraptablejs)
         .pipe(concat('ocontainer-table.js'))
-        .pipe(uglify())
         .pipe(gulp.dest('dist/js'))
 });
 
 gulp.task('uglifybasecss', function () {
     gulp.src(basecss)
         .pipe(concat('ocontainer-base.css'))
-        .pipe(uglifycss())
         .pipe(gulp.dest('dist/css'))
 });
 
 gulp.task('uglifymaskscss', function () {
     gulp.src(maskscss)
         .pipe(concat('ocontainer-masks.css'))
-        .pipe(uglifycss())
         .pipe(gulp.dest('dist/css'))
 });
 
 gulp.task('uglifybootstraptablecss', function () {
     gulp.src(bootstraptablecss)
         .pipe(concat('ocontainer-table.css'))
-        .pipe(uglifycss())
         .pipe(gulp.dest('dist/css'))
 });
 
