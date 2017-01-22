@@ -130,6 +130,9 @@ gulp.task('copyfonts', function() {
 gulp.task('copyimages', function() {
     gulp.src('node_modules/bootstrap-colorpicker/dist/img/bootstrap-colorpicker/*.png')
         .pipe(gulp.dest('dist/img/bootstrap-colorpicker/'));
+		
+	gulp.src('node_modules/multiselect/img/*.png')
+        .pipe(gulp.dest('dist/img/'));
 
     gulp.src('src/img/*')
         .pipe(gulp.dest('dist/img/'));
