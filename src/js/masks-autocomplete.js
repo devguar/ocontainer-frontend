@@ -77,9 +77,7 @@ function defineMasksAutocomplete() {
         ajax: {
             url: function(){
                 var estadoid = $("#estado_id").val();
-
-                var urlcontroller = urlcidades;
-                urlcidades = urlcidades.replace(/999999/g, estadoid);
+                var urlcontroller = urlcidades.replace(/999999/g, estadoid);
                 return urlcontroller;
             },
             dataType: "json",
