@@ -30,3 +30,8 @@
     -moz-border-radius: 5px;
     border-radius: 5px;
 }
+
+.required:after {
+    content:"*";
+    color: #ff0000;
+}
