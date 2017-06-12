@@ -1,0 +1,32 @@
+{
+    "name": "devguar/package-ocontainer-frontend",
+    "description": "Pacote frontend OContainer",
+    "keywords": [
+        "devguar",
+        "package-ocontainer-frontend"
+    ],
+    "homepage": "https://bitbucket.org/devguar/package-ocontainer-frontend",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Lucas Guarnieri",
+            "email": "lucasguarni@hotmail.com"
+        }
+    ],
+    "require": {
+        
+    },
+    "require-dev": {
+        
+    },
+    "autoload": {
+        "psr-4": {
+            
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            
+        }
+    }
+}
