@@ -14,7 +14,7 @@ class LayoutHelper
         $panel = '<div class="panel panel-default">';
 
         if ($title){
-            $panel .= '<div class="panel-body">';
+            $panel .= '<div class="panel-heading">';
             $panel .= $title;
             $panel .= '</div>';
         }
