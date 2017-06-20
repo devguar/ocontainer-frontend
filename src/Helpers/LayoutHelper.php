@@ -10,39 +10,65 @@ namespace Devguar\OContainer\Frontend\Helpers;
 
 class LayoutHelper
 {
+    const sizeSmall = 1;
+    const sizeMedium = 2;
+    const sizeLarge = 3;
+
+    /*
+     * Criar o card
+     */
     public static function openCard($title = null){
         $panel = '<div class="panel panel-default">';
 
         if ($title){
-            $panel .= '<div class="panel-heading">';
-            $panel .= $title;
-            $panel .= '</div>';
+            $panel .= '    <div class="panel-heading">'.$title.'</div>';
         }
 
-        $panel .= '<div class="panel-body">';
+        $panel .= '    <div class="panel-body">';
 
         return $panel;
     }
 
+    /*
+     * Fechar o card
+     */
     public static function closeCard(){
         return '</div></div>';
     }
 
-    public static function openSmallFormCard($title = null){
-        return '<div class="row"><div class="col-lg-8 col-md-10 col-sm-12">'.self::openCard($title);
-    }
+    /*
+     * Criar o card com form
+     */
 
-    public static function closeFormCard(){
-        return self::closeCard().'</div></div>';
-    }
-
-    public static function buttonsSubmitAndBack(){
-        $div = '<div class="form-group">';
-        $div .= '<div class="col-sm-offset-2 col-sm-10">';
-        $div .= \Form::submit('Salvar', array('class' => 'btn btn-primary'));
-        $div .= '<a href="'.\URL::previous().'" name="previous" class="btn btn-default">Voltar</a>';
-        $div .= '</div>';
-        $div .= '</div>';
+    public static function openCardForm($details){
+        $title = isset($details['title']) ? $details['title'] : null;
+        $div = self::openCard($title);
+        $div .= \Form::open($details);
         return $div;
+    }
+
+    /*
+     * Fechar o card form
+     */
+
+    public static function closeCardForm(){
+        $div = \Form::close();
+        $div .= self::closeCard();
+
+        return $div;
+    }
+
+
+
+    public static function buttonSave(){
+        return self::buttonSubmit('Salvar','salvar_formulario');
+    }
+
+    public static function buttonSubmit($label,$name = null){
+        return \Form::submit($label, array('class' => 'btn btn-primary','name'=>$name));
+    }
+
+    public static function buttonPrevious(){
+        return '<a href="'.\URL::previous().'" name="previous" class="btn btn-default">Voltar</a>';
     }
 }
