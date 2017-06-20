@@ -25,6 +25,7 @@ var masksjs = [
     'src/js/masks-color.js',
     'src/js/masks-multiselect.js',
     'src/js/masks-numbers.js',
+    'src/js/masks-parameter.js',
     'src/js/masks-tooltip.js'
 ];
 
