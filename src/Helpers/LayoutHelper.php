@@ -62,9 +62,23 @@ class LayoutHelper
         return $div;
     }
 
-    public static function buttonDinamic($url, $name, $color, $icon, $label)
+    public static function buttonDinamic($url, $name, $color, $icon, $label, $justIcon = false)
     {
-        return "<a href='$url' name='btn_$name' id='btn_$name' class='btn btn-$color'><span class='glyphicon glyphicon-$icon'></span> $label</a>";
+        $element = "<a href='$url' name='btn_$name' id='btn_$name' class='btn btn-$color title='$label'";
+
+        if ($justIcon){
+            $element .= " mask-tooltip";
+        }
+
+        $element .= "'><span class='glyphicon glyphicon-$icon'></span>";
+
+        if (!$justIcon){
+            $element .= " $label";
+        }
+
+        $element .= "</a>";
+
+        return $element;
     }
 
     public static function buttonSave()
@@ -81,16 +95,61 @@ class LayoutHelper
     {
         return self::buttonDinamic(\URL::previous(), "previous", "default", "back", "Voltar");
     }
-    
+
+    public static function buttonRead($url)
+    {
+        return self::buttonDinamic($url, "read", "default", "zoom-in", "Visualizar");
+    }
+
+    public static function buttonReadIcon($url)
+    {
+        return self::buttonDinamic($url, "read", "default", "zoom-in", "Visualizar", true);
+    }
+
     public static function buttonEdit($url)
     {
         return self::buttonDinamic($url, "edit", "default", "pencil", "Editar");
+    }
+
+    public static function buttonEditIcon($url)
+    {
+        return self::buttonDinamic($url, "edit", "default", "pencil", "Editar", true);
     }
 
     public static function buttonDelete($url)
     {
         return self::buttonDinamic($url, "delete", "danger", "trash", "Excluir");
     }
+
+    public static function buttonDeleteIcon($url)
+    {
+        return self::buttonDinamic($url, "delete", "danger", "trash", "Excluir", true);
+    }
+
+    public static function buttonPay($url)
+    {
+        return self::buttonDinamic($url, "pay", "success", "ok", "Pagar");
+    }
+
+    public static function buttonPayIcon($url)
+    {
+        return self::buttonDinamic($url, "pay", "success", "ok", "Pagar", true);
+    }
+
+    public static function buttonCancel($url)
+    {
+        return self::buttonDinamic($url, "cancel", "danger", "remove", "Cancelar");
+    }
+
+    public static function buttonCancelIcon($url)
+    {
+        return self::buttonDinamic($url, "cancel", "danger", "remove", "Cancelar", true);
+    }
+
+
+
+
+
 
 
 
