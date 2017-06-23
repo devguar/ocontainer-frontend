@@ -13,6 +13,13 @@ function defineMasksAutocomplete() {
         language: 'pt-BR'
     });
 
+    $('.mask-chosen-allow-deselect').select2({
+        theme: "bootstrap",
+        placeholder: "Selecione uma opção",
+        language: 'pt-BR',
+        allowClear: true
+    });
+
     var options_ac = {
         theme: "bootstrap",
         placeholder: "Selecione uma opção",

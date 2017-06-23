@@ -8,6 +8,9 @@
 
 namespace Devguar\OContainer\Frontend\Helpers;
 
+use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\URL;
+
 class LayoutHelper
 {
     const sizeSmall = 1;
@@ -146,11 +149,105 @@ class LayoutHelper
         return self::buttonDinamic($url, "cancel", "danger", "remove", "Cancelar", true);
     }
 
+    private static function inputAutocompleteDinamic($id, $name, $url, $modelClass, $cssClass, $allowInsert, $allowDeselect)
+    {
+        $model = new $modelClass;
 
+        if (!$cssClass){
+            $cssClass = "mask-chosen-autocomplete";
 
+            if ($allowDeselect){
+                $cssClass .= "-allow-deselect";
+            }elseif ($allowInsert){
+                $cssClass .= "-allow-insert";
+            }
 
+            $cssClass .= "-autoload";
+        }
 
+        $element = '';
+        $element .= "<select class='$cssClass' name='$name' id='$name'";
 
+        if ($url){
+            $element .= " data-ajax--url='$url'";
+        }
 
+        $element .= ">";
 
+        if ($id){
+            $element .= "<option value='$id' selected>".$model::formatInline($id)."</option>";
+        }
+
+        $element .= "<option></option>";
+
+//        @if (\Illuminate\Support\Facades\App::environment('testing'))
+//        @php
+//            $model = new \App\Models\Configuracoes\FormaPagamento();
+//            $objetos = $model->all();
+//        @endphp
+//
+//        @foreach($objetos as $objeto)
+//            <option value="{{$objeto->id}}">{{$objeto->nome}}</option>
+//    @endforeach
+//    @endif
+
+        $element .= "</select>";
+
+        return $element;
+    }
+
+    private static function inputAutocompletePreloadedDinamic($id, $fieldName, $url, $cssClass, $allowInsert, $allowDeselect)
+    {
+        $url = explode("@",$url);
+        $controller = $url[0];
+        $action = $url[1];
+
+        if (!$cssClass){
+            $cssClass = "mask-chosen";
+
+            if ($allowDeselect){
+                $cssClass .= "-allow-deselect";
+            }elseif ($allowInsert){
+                $cssClass .= "-allow-insert";
+            }
+        }
+
+        $content = (app('App\Http\Controllers\\'.$controller)->{$action}());
+        $content = json_decode($content->getContent());
+        $lista = array();
+        $lista[null] = null; //Poder desmarcar
+
+        foreach ($content as $objeto) {
+            $lista[$objeto->id] = $objeto->text;
+        }
+
+        return \Form::select($fieldName,$lista,$id,['class' => 'form-control '.$cssClass,'id'=>$fieldName]);
+    }
+
+    public static function inputAutocomplete($options)
+    {
+        $id = (isset($options['idrec']) ? $options['idrec'] : null);
+        $name = (isset($options['name']) ? $options['name'] : null);
+        $allowInsert = (isset($options['allowinsert']) ? $options['allowinsert'] : false);
+        $allowDeselect = (isset($options['allowdeselect']) ? $options['allowdeselect'] : false);
+        $cssClass = (isset($options['class']) ? $options['class'] : false);
+        $action = (isset($options['action']) ? $options['action'] : null);
+        $preloaded = (isset($options['preloaded']) ? $options['preloaded'] : true);
+
+        if (!$preloaded) {
+            if (\Illuminate\Support\Facades\App::environment('testing')){
+                $preloaded = true;
+            }
+        }
+
+        if ($preloaded) {
+            return self::inputAutocompletePreloadedDinamic($id, $name, $action, $cssClass, $allowInsert, $allowDeselect);
+        }else{
+            $url = (isset($options['url']) ? $options['url'] : ($action ? \URL::action($action) : null));
+            $model = (isset($options['model']) ? $options['model'] : false);
+
+            return self::inputAutocompleteDinamic($id, $name, $url, $model, $cssClass, $allowInsert, $allowDeselect);
+        }
+    }
 }
+
