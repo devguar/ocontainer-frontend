@@ -149,7 +149,7 @@ class LayoutHelper
         return self::buttonDinamic($url, "cancel", "danger", "remove", "Cancelar", true);
     }
 
-    private static function inputAutocompleteDinamic($id, $name, $url, $modelClass, $cssClass, $allowInsert, $allowDeselect)
+    private static function inputAutocompleteDinamic($id, $name, $url, $modelClass, $cssClass, $multiple, $allowInsert, $allowDeselect)
     {
         $model = new $modelClass;
 
@@ -170,6 +170,10 @@ class LayoutHelper
 
         if ($url){
             $element .= " data-ajax--url='$url'";
+        }
+
+        if ($multiple){
+            $element .= " multiple='multiple' ";
         }
 
         $element .= ">";
@@ -196,7 +200,7 @@ class LayoutHelper
         return $element;
     }
 
-    private static function inputAutocompletePreloadedDinamic($id, $fieldName, $url, $cssClass, $allowInsert, $allowDeselect)
+    private static function inputAutocompletePreloadedDinamic($id, $fieldName, $url, $cssClass, $multiple, $allowInsert, $allowDeselect)
     {
         $url = explode("@",$url);
         $controller = $url[0];
@@ -215,7 +219,13 @@ class LayoutHelper
         $content = (app('App\Http\Controllers\\'.$controller)->{$action}());
         $content = json_decode($content->getContent());
 
-        $element = "<select id='$fieldName' name='$fieldName' class='form-control $cssClass'>";
+        $element = "<select id='$fieldName' name='$fieldName' class='form-control $cssClass'";
+
+        if ($multiple){
+            $element .= " multiple='multiple' ";
+        }
+
+        $element .= ">";
         $element .= "<option></option>";
 
         foreach ($content as $objeto) {
@@ -237,6 +247,7 @@ class LayoutHelper
         $cssClass = (isset($options['class']) ? $options['class'] : false);
         $action = (isset($options['action']) ? $options['action'] : null);
         $preloaded = (isset($options['preloaded']) ? $options['preloaded'] : true);
+        $multiple = (isset($options['multiple']) ? $options['multiple'] : false);
 
         if ($oldValue){
             if (old($name)){
@@ -251,12 +262,12 @@ class LayoutHelper
         }
 
         if ($preloaded) {
-            return self::inputAutocompletePreloadedDinamic($id, $name, $action, $cssClass, $allowInsert, $allowDeselect);
+            return self::inputAutocompletePreloadedDinamic($id, $name, $action, $cssClass, $multiple, $allowInsert, $allowDeselect);
         }else{
             $url = (isset($options['url']) ? $options['url'] : ($action ? \URL::action($action) : null));
             $model = (isset($options['model']) ? $options['model'] : false);
 
-            return self::inputAutocompleteDinamic($id, $name, $url, $model, $cssClass, $allowInsert, $allowDeselect);
+            return self::inputAutocompleteDinamic($id, $name, $url, $model, $cssClass, $multiple, $allowInsert, $allowDeselect);
         }
     }
 }
