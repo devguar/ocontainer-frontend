@@ -214,25 +214,35 @@ class LayoutHelper
 
         $content = (app('App\Http\Controllers\\'.$controller)->{$action}());
         $content = json_decode($content->getContent());
-        $lista = array();
-        $lista[null] = null; //Poder desmarcar
+
+        $element = "<select id='$fieldName' name='$fieldName' class='form-control $cssClass'>";
+        $element .= "<option></option>";
 
         foreach ($content as $objeto) {
-            $lista[$objeto->id] = $objeto->text;
+            $element .= "<option value='$objeto->id' ".($objeto->id == $id ? 'selected' : '').">$objeto->text</option>";
         }
 
-        return \Form::select($fieldName,$lista,$id,['class' => 'form-control '.$cssClass,'id'=>$fieldName]);
+        $element .= "</select>";
+
+        return $element;
     }
 
     public static function inputAutocomplete($options)
     {
         $id = (isset($options['idrec']) ? $options['idrec'] : null);
+        $oldValue = (isset($options['oldvalue']) ? $options['oldvalue'] : true);
         $name = (isset($options['name']) ? $options['name'] : null);
         $allowInsert = (isset($options['allowinsert']) ? $options['allowinsert'] : false);
         $allowDeselect = (isset($options['allowdeselect']) ? $options['allowdeselect'] : false);
         $cssClass = (isset($options['class']) ? $options['class'] : false);
         $action = (isset($options['action']) ? $options['action'] : null);
         $preloaded = (isset($options['preloaded']) ? $options['preloaded'] : true);
+
+        if ($oldValue){
+            if (old($name)){
+                $id = old($name);
+            }
+        }
 
         if (!$preloaded) {
             if (\Illuminate\Support\Facades\App::environment('testing')){
