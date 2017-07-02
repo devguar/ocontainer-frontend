@@ -67,7 +67,7 @@ class LayoutHelper
 
     public static function buttonDinamic($url, $name, $color, $icon, $label, $justIcon = false)
     {
-        $element = "<a href='$url' name='btn_$name' id='btn_$name' class='btn btn-$color title='$label'";
+        $element = "<a href='$url' name='btn_$name' id='btn_$name' title='$label' class='btn btn-$color ";
 
         if ($justIcon){
             $element .= " mask-tooltip";

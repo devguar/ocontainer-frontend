@@ -3,30 +3,34 @@
  */
 
 function bootstrapTableButtons(value, row, index) {
-    var coluna = $(this);
-    var divButtons = "table-butons";
+    if (row.actions !== undefined && row.actions !== null){
+        return row.actions;
+    }else{
+        var coluna = $(this);
+        var divButtons = "table-butons";
 
-    if(coluna[0].hasOwnProperty("nomeDivFormatter")){
-        divButtons = coluna[0].nomeDivFormatter;
+        if(coluna[0].hasOwnProperty("nomeDivFormatter")){
+            divButtons = coluna[0].nomeDivFormatter;
+        }
+
+        return $("#" + divButtons).html().replace(/999999/g, row.id);
     }
-
-    return $("#" + divButtons).html().replace(/999999/g, row.id);
 }
 
 function bootstrapTableFormatSimNao(value, row, index) {
-    if (value == 'S') return 'Sim';
+    if (value === 'S') return 'Sim';
     return 'Não';
 }
 
 function bootstrapTableFormatCor(value, row, index) {
-    if (value  == "") return 'Sem cor';
+    if (value === "") return 'Sem cor';
     else{
         return '<span class="label" style="background-color: ' + value + '">____</span>';
     }
 }
 
 function bootstrapTableFormatDate(value, row, index) {
-    if (value != null) value = formatDate(value);
+    if (value !== null) value = formatDate(value);
     return value;
 }
 
@@ -47,14 +51,14 @@ function formatDateTime(value) {
 }
 
 function bootstrapTableFormatDateTime(value, row, index) {
-    if (value != null){
+    if (value !== null){
         value = formatDateTime(value);
     }
     return value;
 }
 
 function bootstrapTableFormatAtivo(value, row, index) {
-    if (row.ativo == 'S'){
+    if (row.ativo === 'S'){
         return value;
     }else {
         if (value.indexOf('</a>') > 0){
