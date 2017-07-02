@@ -35,3 +35,11 @@
     content: "*";
     color: #ff0000;
 }
+
+.tabela-dinamica tr .btn{
+    opacity: 0.1;
+}
+
+.tabela-dinamica tr:hover .btn{
+    opacity: 1;
+}
