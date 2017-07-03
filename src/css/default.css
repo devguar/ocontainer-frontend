@@ -43,3 +43,9 @@
 .tabela-dinamica tr:hover .btn{
     opacity: 1;
 }
+
+.equal{
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+}
