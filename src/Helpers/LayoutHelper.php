@@ -149,6 +149,17 @@ class LayoutHelper
         return self::buttonDinamic($url, "cancel", "danger", "remove", "Cancelar", true);
     }
 
+    public static function buttonEmail($url)
+    {
+        return self::buttonDinamic($url, "email", "default", "envelope", "Enviar email");
+    }
+
+    public static function buttonEmailIcon($url)
+    {
+        return self::buttonDinamic($url, "email", "default", "envelope", "Enviar email", true);
+    }
+
+
     private static function inputAutocompleteDinamic($id, $name, $url, $modelClass, $cssClass, $multiple, $allowInsert, $allowDeselect)
     {
         $model = new $modelClass;
