@@ -19,7 +19,7 @@ var masksjs = [
     'node_modules/jquery-maskmoney/dist/jquery.maskMoney.js',
     'node_modules/select2/dist/js/select2.js',
     'node_modules/select2/dist/js/i18n/pt-BR.js',
-    'node_modules/multiselect/js/jquery.multi-select.js',
+    'node_modules/multiselect-two-sides/dist/js/multiselect.js',
     'src/js/masks-default.js',
     'src/js/masks-autocomplete.js',
     'src/js/masks-color.js',
