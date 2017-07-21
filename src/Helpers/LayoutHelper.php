@@ -22,13 +22,13 @@ class LayoutHelper
      */
     public static function openCard($title = null)
     {
-        $panel = '<div class="panel panel-default">';
+        $panel = '<div class="card">';
 
         if ($title) {
-            $panel .= '    <div class="panel-heading">' . $title . '</div>';
+            $panel .= '    <div class="header"><h2>' . $title . '</h2></div>';
         }
 
-        $panel .= '    <div class="panel-body">';
+        $panel .= '    <div class="body">';
 
         return $panel;
     }
@@ -73,7 +73,7 @@ class LayoutHelper
             $element .= " mask-tooltip";
         }
 
-        $element .= "'><span class='glyphicon glyphicon-$icon'></span>";
+        $element .= "'><i class='material-icons'>$icon</i>";
 
         if (!$justIcon){
             $element .= " $label";
@@ -101,32 +101,32 @@ class LayoutHelper
 
     public static function buttonRead($url)
     {
-        return self::buttonDinamic($url, "read", "default", "zoom-in", "Visualizar");
+        return self::buttonDinamic($url, "read", "default", "zoom_in", "Visualizar");
     }
 
     public static function buttonReadIcon($url)
     {
-        return self::buttonDinamic($url, "read", "default", "zoom-in", "Visualizar", true);
+        return self::buttonDinamic($url, "read", "default", "zoom_in", "Visualizar", true);
     }
 
     public static function buttonEdit($url)
     {
-        return self::buttonDinamic($url, "edit", "default", "pencil", "Editar");
+        return self::buttonDinamic($url, "edit", "default", "mode_edit", "Editar");
     }
 
     public static function buttonEditIcon($url)
     {
-        return self::buttonDinamic($url, "edit", "default", "pencil", "Editar", true);
+        return self::buttonDinamic($url, "edit", "default", "mode_edit", "Editar", true);
     }
 
     public static function buttonDelete($url)
     {
-        return self::buttonDinamic($url, "delete", "danger", "trash", "Excluir");
+        return self::buttonDinamic($url, "delete", "danger", "delete", "Excluir");
     }
 
     public static function buttonDeleteIcon($url)
     {
-        return self::buttonDinamic($url, "delete", "danger", "trash", "Excluir", true);
+        return self::buttonDinamic($url, "delete", "danger", "delete", "Excluir", true);
     }
 
     public static function buttonPay($url)
@@ -151,12 +151,16 @@ class LayoutHelper
 
     public static function buttonEmail($url)
     {
-        return self::buttonDinamic($url, "email", "default", "envelope", "Enviar email");
+        return self::buttonDinamic($url, "email", "default", "email", "Enviar email");
     }
 
     public static function buttonEmailIcon($url)
     {
-        return self::buttonDinamic($url, "email", "default", "envelope", "Enviar email", true);
+        return self::buttonDinamic($url, "email", "default", "email", "Enviar email", true);
+    }
+
+    public static function buttonAddBig($url){
+        return '<a class="btn btn-primary btn-circle-lg waves-effect waves-circle waves-float" href="'.$url.'"><i class="material-icons">add</i></a>';
     }
 
 
