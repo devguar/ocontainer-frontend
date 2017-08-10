@@ -45,9 +45,15 @@ class LayoutHelper
     /*
      * Criar o card
      */
-    public static function openCard($title = null)
+    public static function openCard($title = null, $options = array())
     {
-        $panel = '<div class="'.static::$classCard.'">';
+        $class = static::$classCard;
+
+        if (isset($options['class'])){
+            $class .= ' '.$options['class'];
+        }
+
+        $panel = '<div class="'.$class.'">';
 
         if ($title) {
             $panel .= static::makeHeaderCard($title);
