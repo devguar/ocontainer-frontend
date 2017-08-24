@@ -96,7 +96,7 @@ class LayoutHelper
         return $div;
     }
 
-    public static function buttonDinamic($url, $name, $color, $icon, $label, $justIcon = false)
+    public static function buttonDinamic($url, $name, $color, $icon, $label, $justIcon = false, $options = array())
     {
         $element = "<a href='$url' name='btn_$name' id='btn_$name' title='$label' class='".static::makeButtonClass($color, $justIcon);
 
@@ -104,7 +104,15 @@ class LayoutHelper
             $element .= " mask-tooltip";
         }
 
-        $element .= "'>".static::makeIcon($icon);
+        $element .= "'";
+
+        if (count($options) > 0){
+            foreach ($options as $option => $value){
+                $element .= " $option = '$value'";
+            }
+        }
+
+        $element .= ">".static::makeIcon($icon);
 
         if (!$justIcon){
             $element .= static::makeButtonLabel($label);
