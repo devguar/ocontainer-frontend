@@ -9,6 +9,8 @@
 namespace Devguar\OContainer\Frontend\Helpers;
 
 
+use Illuminate\Support\Facades\App;
+
 class LayoutHelperMaterial extends LayoutHelper
 {
     protected static $classCard = 'card';
@@ -32,6 +34,10 @@ class LayoutHelperMaterial extends LayoutHelper
     }
 
     protected static function makeButtonClass($color, $justIcon){
+        if(App::environment('testing')){
+            return '';
+        }
+
         $class = 'btn btn-'.$color.' waves-effect';
 
         if ($justIcon){
@@ -50,6 +56,10 @@ class LayoutHelperMaterial extends LayoutHelper
     {
         if (!isset($config['id'])){
             $config['id'] = "btn_adicionar";
+        }
+
+        if(App::environment('testing')){
+            return '<a id="'.$config['id'].'" href="'.$url.'">adicionar</a>';
         }
 
         return '<a class="btn btn-primary btn-circle-lg waves-effect waves-circle waves-float" id="'.$config['id'].'" href="'.$url.'"><i class="material-icons">add</i></a>';

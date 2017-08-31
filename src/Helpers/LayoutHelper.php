@@ -9,6 +9,7 @@
 namespace Devguar\OContainer\Frontend\Helpers;
 
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\URL;
 
 class LayoutHelper
@@ -112,10 +113,16 @@ class LayoutHelper
             }
         }
 
-        $element .= ">".static::makeIcon($icon);
+        $element .= ">";
 
-        if (!$justIcon){
-            $element .= static::makeButtonLabel($label);
+        if(App::environment('testing')){
+            $element .= $label;
+        }else{
+            $element .= static::makeIcon($icon);
+
+            if (!$justIcon){
+                $element .= static::makeButtonLabel($label);
+            }
         }
 
         $element .= "</a>";
