@@ -52,6 +52,10 @@ class LayoutHelper
 
         if (isset($options['class'])){
             $class .= ' '.$options['class'];
+
+            if(App::environment('testing')){
+                $class .= '-testing';
+            }
         }
 
         $panel = '<div class="'.$class.'">';
