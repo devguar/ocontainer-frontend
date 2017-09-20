@@ -103,13 +103,25 @@ class LayoutHelper
 
     public static function buttonDinamic($url, $name, $color, $icon, $label, $justIcon = false, $options = array())
     {
-        $element = "<a href='$url' name='btn_$name' id='btn_$name' title='$label' class='".static::makeButtonClass($color, $justIcon);
+        $element = array();
+        $element['id'] = "btn_$name";
+        $element['name'] = "btn_$name";
+        $element['label'] = $label;
+        $element['url'] = $url;
+        $element['class'] = static::makeButtonClass($color, $justIcon);
 
         if ($justIcon){
-            $element .= " mask-tooltip";
+            $element['class'] .= " mask-tooltip";
         }
 
-        $element .= "'";
+        foreach ($element as $item => $value){
+            if (isset($options[$item])){
+                $element[$item] = $options[$item];
+                unset($options[$item]);
+            }
+        }
+
+        $element = "<a href='".$element['url']."' name='".$element['name']."' id='".$element['id']."' title='".$element['label']."' class='".$element['class']."'";
 
         if (count($options) > 0){
             foreach ($options as $option => $value){
@@ -144,74 +156,74 @@ class LayoutHelper
         return \Form::submit($label, array('class' => static::makeButtonClass('primary', false), 'name' => 'btn_'.strtolower($name), 'id' => 'btn_'.strtolower($name)));
     }
 
-    public static function buttonPrevious()
+    public static function buttonPrevious($options = array())
     {
-        return self::buttonDinamic(\URL::previous(), "previous", "default", static::$iconBack, "Voltar");
+        return self::buttonDinamic(\URL::previous(), "previous", "default", static::$iconBack, "Voltar", false, $options);
     }
 
-    public static function buttonPreviousIcon()
+    public static function buttonPreviousIcon($options = array())
     {
-        return self::buttonDinamic(\URL::previous(), "previous", "default", static::$iconBack, "Voltar", true);
+        return self::buttonDinamic(\URL::previous(), "previous", "default", static::$iconBack, "Voltar", true, $options);
     }
 
-    public static function buttonRead($url)
+    public static function buttonRead($url, $options = array())
     {
-        return self::buttonDinamic($url, "read", "default", static::$iconRead, "Visualizar");
+        return self::buttonDinamic($url, "read", "default", static::$iconRead, "Visualizar",false, $options);
     }
 
-    public static function buttonReadIcon($url)
+    public static function buttonReadIcon($url, $options = array())
     {
-        return self::buttonDinamic($url, "read", "default", static::$iconRead, "Visualizar", true);
+        return self::buttonDinamic($url, "read", "default", static::$iconRead, "Visualizar", true, $options);
     }
 
-    public static function buttonEdit($url)
+    public static function buttonEdit($url, $options = array())
     {
-        return self::buttonDinamic($url, "edit", "default", static::$iconEdit, "Editar");
+        return self::buttonDinamic($url, "edit", "default", static::$iconEdit, "Editar",false, $options);
     }
 
-    public static function buttonEditIcon($url)
+    public static function buttonEditIcon($url, $options = array())
     {
-        return self::buttonDinamic($url, "edit", "default", static::$iconEdit, "Editar", true);
+        return self::buttonDinamic($url, "edit", "default", static::$iconEdit, "Editar", true, $options);
     }
 
-    public static function buttonDelete($url)
+    public static function buttonDelete($url, $options = array())
     {
-        return self::buttonDinamic($url, "delete", "danger", static::$iconDelete, "Excluir");
+        return self::buttonDinamic($url, "delete", "danger", static::$iconDelete, "Excluir", false, $options);
     }
 
-    public static function buttonDeleteIcon($url)
+    public static function buttonDeleteIcon($url, $options = array())
     {
-        return self::buttonDinamic($url, "delete", "danger", static::$iconDelete, "Excluir", true);
+        return self::buttonDinamic($url, "delete", "danger", static::$iconDelete, "Excluir", true, $options);
     }
 
-    public static function buttonPay($url)
+    public static function buttonPay($url, $options = array())
     {
-        return self::buttonDinamic($url, "pay", "success", static::$iconPay, "Pagar");
+        return self::buttonDinamic($url, "pay", "success", static::$iconPay, "Pagar", false, $options);
     }
 
-    public static function buttonPayIcon($url)
+    public static function buttonPayIcon($url, $options = array())
     {
-        return self::buttonDinamic($url, "pay", "success", static::$iconPay, "Pagar", true);
+        return self::buttonDinamic($url, "pay", "success", static::$iconPay, "Pagar", true, $options);
     }
 
-    public static function buttonCancel($url)
+    public static function buttonCancel($url, $options = array())
     {
-        return self::buttonDinamic($url, "cancel", "danger", static::$iconCancel, "Cancelar");
+        return self::buttonDinamic($url, "cancel", "danger", static::$iconCancel, "Cancelar", false, $options);
     }
 
-    public static function buttonCancelIcon($url)
+    public static function buttonCancelIcon($url, $options = array())
     {
-        return self::buttonDinamic($url, "cancel", "danger", static::$iconCancel, "Cancelar", true);
+        return self::buttonDinamic($url, "cancel", "danger", static::$iconCancel, "Cancelar", true, $options);
     }
 
-    public static function buttonEmail($url)
+    public static function buttonEmail($url, $options = array())
     {
-        return self::buttonDinamic($url, "email", "default", static::$iconEmail, "Enviar email");
+        return self::buttonDinamic($url, "email", "default", static::$iconEmail, "Enviar email", false, $options);
     }
 
-    public static function buttonEmailIcon($url)
+    public static function buttonEmailIcon($url, $options = array())
     {
-        return self::buttonDinamic($url, "email", "default", static::$iconEmail, "Enviar email", true);
+        return self::buttonDinamic($url, "email", "default", static::$iconEmail, "Enviar email", true, $options);
     }
 
     private static function inputAutocompleteDinamic($id, $name, $url, $modelClass, $cssClass, $multiple, $allowInsert, $allowDeselect)
