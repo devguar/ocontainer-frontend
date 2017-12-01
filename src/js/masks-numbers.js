@@ -31,4 +31,13 @@ function defineMasksNumbers() {
         decimal: ',',
         affixesStay: false
     });
+
+    $('.mask-peso').maskMoney({
+        prefix: '',
+        allowNegative: false,
+        thousands: '',
+        decimal: ',',
+        precision: 3,
+        affixesStay: false
+    });
 }
