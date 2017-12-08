@@ -114,6 +114,11 @@ class LayoutHelper
             $element['class'] .= " mask-tooltip";
         }
 
+        if (isset($options['add-class'])){
+            $element['class'] .= ' '.$options['add-class'];
+            unset($options['add-class']);
+        }
+
         foreach ($element as $item => $value){
             if (isset($options[$item])){
                 $element[$item] = $options[$item];
