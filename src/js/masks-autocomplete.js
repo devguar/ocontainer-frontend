@@ -20,6 +20,20 @@ function defineMasksAutocomplete() {
         allowClear: true
     });
 
+    $('.mask-chosen-allow-insert').select2({
+        theme: "bootstrap",
+        placeholder: "Selecione uma opção ou digite",
+        language: 'pt-BR',
+        tags: true,
+        createTag: function (params) {
+            return {
+                id: "new:" + params.term,
+                text: params.term,
+                newOption: true
+            }
+        }
+    });
+
     var options_ac = {
         theme: "bootstrap",
         placeholder: "Selecione uma opção",
