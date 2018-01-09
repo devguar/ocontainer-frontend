@@ -9,9 +9,10 @@ $(document).ready(function(){
 function defineMasksMultiSelect(){
     $(".mask-multiselect").multiselect({
         search: {
-            left: '<input type="text" name="q" class="form-control" placeholder="Buscar..." />',
-            right: '<input type="text" name="q" class="form-control" placeholder="Buscar..." />',
+            left: '<input type="text" name="q" class="form-control form-multiselect-search" placeholder="Buscar..." />',
+            right: '<input type="text" name="q" class="form-control form-multiselect-search" placeholder="Buscar..." />',
         },
+        sort: true,
         fireSearch: function(value) {
             return value.length >= 1;
         }
