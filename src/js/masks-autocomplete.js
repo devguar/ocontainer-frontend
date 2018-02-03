@@ -8,20 +8,17 @@ $(document).ready(function(){
 
 function defineMasksAutocomplete() {
     $('.mask-chosen').select2({
-        theme: "bootstrap",
         placeholder: "Selecione uma opção",
         language: 'pt-BR'
     });
 
     $('.mask-chosen-allow-deselect').select2({
-        theme: "bootstrap",
         placeholder: "Selecione uma opção",
         language: 'pt-BR',
         allowClear: true
     });
 
     $('.mask-chosen-allow-insert').select2({
-        theme: "bootstrap",
         placeholder: "Selecione uma opção ou digite",
         language: 'pt-BR',
         tags: true,
@@ -35,7 +32,6 @@ function defineMasksAutocomplete() {
     });
 
     var options_ac = {
-        theme: "bootstrap",
         placeholder: "Selecione uma opção",
         language: 'pt-BR',
         minimumInputLength: 1,
@@ -90,7 +86,6 @@ function defineMasksAutocomplete() {
     $('.mask-chosen-autocomplete-allow-insert-autoload').select2(options_ac_autoload_allowinsert);
 
     $('.mask-chosen-cidade_id').select2({
-        theme: "bootstrap",
         placeholder: "Selecione uma opção",
         language: 'pt-BR',
         minimumInputLength: 1,
