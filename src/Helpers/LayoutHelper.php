@@ -231,7 +231,7 @@ class LayoutHelper
         return self::buttonDinamic($url, "email", "default", static::$iconEmail, "Enviar email", true, $options);
     }
 
-    private static function inputAutocompleteDinamic($id, $name, $url, $modelClass, $cssClass, $multiple, $allowInsert, $allowDeselect)
+    private static function inputAutocompleteDinamic($id, $name, $url, $modelClass, $cssClass, $multiple, $allowInsert, $allowDeselect, $emptyOption)
     {
         $model = new $modelClass;
 
@@ -264,25 +264,16 @@ class LayoutHelper
             $element .= "<option value='$id' selected>".$model::formatInline($id)."</option>";
         }
 
-        $element .= "<option></option>";
-
-//        @if (\Illuminate\Support\Facades\App::environment('testing'))
-//        @php
-//            $model = new \App\Models\Configuracoes\FormaPagamento();
-//            $objetos = $model->all();
-//        @endphp
-//
-//        @foreach($objetos as $objeto)
-//            <option value="{{$objeto->id}}">{{$objeto->nome}}</option>
-//    @endforeach
-//    @endif
+        if ($emptyOption){
+            $element .= "<option></option>";
+        }
 
         $element .= "</select>";
 
         return $element;
     }
 
-    private static function inputAutocompletePreloadedDinamic($id, $fieldName, $url, $cssClass, $multiple, $allowInsert, $allowDeselect)
+    private static function inputAutocompletePreloadedDinamic($id, $fieldName, $url, $cssClass, $multiple, $allowInsert, $allowDeselect, $emptyOption)
     {
         $url = explode("@",$url);
         $controller = $url[0];
@@ -308,7 +299,10 @@ class LayoutHelper
         }
 
         $element .= ">";
-        $element .= "<option></option>";
+
+        if ($emptyOption){
+            $element .= "<option></option>";
+        }
 
         foreach ($content as $objeto) {
             $element .= "<option value='$objeto->id' ".($objeto->id == $id ? 'selected' : '').">$objeto->text</option>";
@@ -321,15 +315,16 @@ class LayoutHelper
 
     public static function inputAutocomplete($options)
     {
-        $id = (isset($options['idrec']) ? $options['idrec'] : null);
-        $oldValue = (isset($options['oldvalue']) ? $options['oldvalue'] : true);
-        $name = (isset($options['name']) ? $options['name'] : null);
-        $allowInsert = (isset($options['allowinsert']) ? $options['allowinsert'] : false);
-        $allowDeselect = (isset($options['allowdeselect']) ? $options['allowdeselect'] : false);
-        $cssClass = (isset($options['class']) ? $options['class'] : false);
-        $action = (isset($options['action']) ? $options['action'] : null);
-        $preloaded = (isset($options['preloaded']) ? $options['preloaded'] : true);
-        $multiple = (isset($options['multiple']) ? $options['multiple'] : false);
+        $id = ($options['idrec'] ?? null);
+        $oldValue = ($options['oldvalue'] ?? true);
+        $name = ($options['name'] ?? null);
+        $allowInsert = ($options['allowinsert'] ?? false);
+        $allowDeselect = ($options['allowdeselect'] ?? false);
+        $cssClass = ($options['class'] ?? false);
+        $action = ($options['action'] ?? null);
+        $preloaded = ($options['preloaded'] ?? true);
+        $multiple = ($options['multiple'] ?? false);
+        $emptyOption = ($options['emptyoption'] ?? true);
 
         if ($oldValue){
             if (old($name)){
@@ -344,12 +339,12 @@ class LayoutHelper
         }
 
         if ($preloaded) {
-            return self::inputAutocompletePreloadedDinamic($id, $name, $action, $cssClass, $multiple, $allowInsert, $allowDeselect);
+            return self::inputAutocompletePreloadedDinamic($id, $name, $action, $cssClass, $multiple, $allowInsert, $allowDeselect, $emptyOption);
         }else{
             $url = (isset($options['url']) ? $options['url'] : ($action ? \URL::action($action) : null));
             $model = (isset($options['model']) ? $options['model'] : false);
 
-            return self::inputAutocompleteDinamic($id, $name, $url, $model, $cssClass, $multiple, $allowInsert, $allowDeselect);
+            return self::inputAutocompleteDinamic($id, $name, $url, $model, $cssClass, $multiple, $allowInsert, $allowDeselect, $emptyOption);
         }
     }
 }
