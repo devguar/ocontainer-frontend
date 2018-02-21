@@ -25,6 +25,7 @@ class LayoutHelper
     protected static $iconPay = 'ok';
     protected static $iconBack = 'back';
     protected static $iconCancel = 'remove';
+    protected static $iconHelp = 'question-sign';
 
     protected static function makeHeaderCard($title){
         return '<div class="'.static::$classCardHeader.'">' . $title . '</div>';
@@ -229,6 +230,16 @@ class LayoutHelper
     public static function buttonEmailIcon($url, $options = array())
     {
         return self::buttonDinamic($url, "email", "default", static::$iconEmail, "Enviar email", true, $options);
+    }
+
+    public static function buttonHelp($url, $options = array())
+    {
+        return self::buttonDinamic($url, "help", "default", static::$iconHelp, "Help", false, $options);
+    }
+
+    public static function buttonHelpIcon($url, $options = array())
+    {
+        return self::buttonDinamic($url, "help", "default", static::$iconHelp, "Help", true, $options);
     }
 
     private static function inputAutocompleteDinamic($id, $name, $url, $modelClass, $cssClass, $multiple, $allowInsert, $allowDeselect, $emptyOption)

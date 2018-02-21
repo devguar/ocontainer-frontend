@@ -24,6 +24,7 @@ class LayoutHelperMaterial extends LayoutHelper
     protected static $iconPay = 'check';
     protected static $iconCancel = 'cancel';
     protected static $iconBack = 'arrow_back';
+    protected static $iconHelp = 'help';
 
     protected static function makeHeaderCard($title){
         return '<div class="'.static::$classCardHeader.'"><h2>' . $title . '</h2></div>';
