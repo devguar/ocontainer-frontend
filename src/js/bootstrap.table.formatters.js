@@ -36,7 +36,7 @@ function bootstrapTableFormatDate(value, row, index) {
 
 function formatDate(value){
     var partes = value.split('-');
-    return partes[2] + '/' + partes[1] + '/' + partes[0];
+    return partes[2].trim() + '/' + partes[1].trim() + '/' + partes[0].trim();
 }
 
 function formatDateTime(value) {
@@ -70,4 +70,10 @@ function bootstrapTableFormatAtivo(value, row, index) {
 
         return value;
     }
+}
+
+function bootstrapTableValueSorter(a, b) {
+    if (a.valor < b.valor) return -1;
+    if (a.valor > b.valor) return 1;
+    return 0;
 }
