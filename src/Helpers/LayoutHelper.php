@@ -262,7 +262,7 @@ class LayoutHelper
         $element .= "<select class='$cssClass' name='$name' id='$name'";
 
         if ($url){
-            $element .= " data-ajax--url='$url'";
+            $element .= " data-ajax-url='$url'";
         }
 
         if ($multiple){
