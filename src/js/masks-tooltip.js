@@ -12,4 +12,5 @@ $(document).ready(function(){
 
 function defineMasksTooltip(){
     $('.mask-tooltip').tooltip();
+    $('.mask-popover').popover({html : true})
 }
