@@ -58,7 +58,7 @@ function bootstrapTableFormatDateTime(value, row, index) {
 }
 
 function bootstrapTableFormatAtivo(value, row, index) {
-    if (row.ativo === 'S'){
+    if (row.ativo === 'S' || row.ativo === 1){
         return value;
     }else {
         if (value.indexOf('</a>') > 0){
