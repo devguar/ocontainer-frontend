@@ -1,11 +1,11 @@
 {
-    "name": "devguar/package-ocontainer-frontend",
+    "name": "devguar/ocontainer-frontend",
     "description": "Pacote frontend OContainer",
     "keywords": [
         "devguar",
         "package-ocontainer-frontend"
     ],
-    "homepage": "https://bitbucket.org/devguar/package-ocontainer-frontend",
+    "homepage": "https://github.com/devguar/ocontainer-frontend",
     "license": "MIT",
     "authors": [
         {
