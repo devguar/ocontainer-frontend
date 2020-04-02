@@ -14,7 +14,7 @@
     "pump": "^1.0.3"
   },
   "dependencies": {
-    "bootstrap": "^3.3.7",
+    "bootstrap": "^3.4.1",
     "bootstrap-colorpicker": "^2.5.2",
     "bootstrap-datepicker": "^1.7.1",
     "bootstrap-table": "^1.10.1",
