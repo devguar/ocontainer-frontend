@@ -23,7 +23,7 @@
     "jquery-ui": "^1.10.5",
     "jquery.maskedinput": "^1.4.1",
     "multiselect-two-sides": "^2.4.0",
-    "select2": "^4.0.5",
+    "select2": "^4.0.6",
     "select2-bootstrap-theme": "0.1.0-beta.9"
   }
 }
