@@ -20,7 +20,7 @@
     "bootstrap-table": "^1.10.1",
     "jquery": "^3.1.1",
     "jquery-maskmoney": "^3.0.2",
-    "jquery-ui": "^1.10.5",
+    "jquery-ui": "^1.13.2",
     "jquery.maskedinput": "^1.4.1",
     "multiselect-two-sides": "^2.4.0",
     "select2": "^4.0.5",
