@@ -16,17 +16,15 @@ function defineMasksDefault() {
     $(".mask-cpf").mask("999.999.999-99");
 
     $(".mask-cnpj").mask("99.999.999/9999-99");
-
-    $(".mask-telefone").mask("(99) 9999-9999?9").focusout(function (event) {
-        var target, phone, element;
-        target = (event.currentTarget) ? event.currentTarget : event.srcElement;
-        phone = target.value.replace(/\D/g, '');
-        element = $(target);
-        element.unmask();
-        if(phone.length > 10) {
-            element.mask("(99) 99999-999?9");
+    
+    $(".mask-telefone").mask("(00) 0000-00009");
+    
+    $(".mask-telefone").on("blur", function() {
+        var phone = $(this).val().replace(/\D/g, '');
+        if (phone.length > 10) {
+            $(this).mask("(00) 00000-0009");
         } else {
-            element.mask("(99) 9999-9999?9");
+            $(this).mask("(00) 0000-00009");
         }
     });
 }
