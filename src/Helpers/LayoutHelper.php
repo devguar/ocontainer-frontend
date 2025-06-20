@@ -259,7 +259,7 @@ class LayoutHelper
         }
 
         $element = '';
-        $element .= "<select class='$cssClass' name='$name' id='$name'";
+        $element .= "<select class='$cssClass' name='$name' id='$name' style='width: 100%'";
 
         if ($url){
             $element .= " data-ajax-url='$url'";
@@ -359,4 +359,3 @@ class LayoutHelper
         }
     }
 }
-
